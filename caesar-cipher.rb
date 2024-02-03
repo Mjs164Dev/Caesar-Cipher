@@ -19,14 +19,11 @@ end
 
 # ceaser cipher method that accepts message and shift factor as parameters and returns the encrypted string.
 def caesar_cipher(message, shift_factor)
-  alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
   message_array = message.rstrip.chars # delete spaces off end of string and split string into an array of chars
-  message_array.map.with_index do |char, index|
-    
-    # match index of char in alphabet
-    # new_char = alphabet[]
-
-    puts "#{char} & #{new_char}"
+  message_array.map do |char|
+    ascii_value = char.ord
+    new_char = (ascii_value - shift_factor).chr
+    return
   end
 end
 
