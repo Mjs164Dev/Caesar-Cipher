@@ -20,11 +20,14 @@ end
 # ceaser cipher method that accepts message and shift factor as parameters and returns the encrypted string.
 def caesar_cipher(message, shift_factor)
   message_array = message.rstrip.chars # delete spaces off end of string and split string into an array of chars
+  new_string = []
   message_array.map do |char|
     ascii_value = char.ord
     new_char = (ascii_value - shift_factor).chr
-    return
+    new_string.push(new_char)
   end
+  puts "**NEW STRING**"
+  puts "#{new_string}"
 end
 
 caesar_cipher(message, shift_factor)
