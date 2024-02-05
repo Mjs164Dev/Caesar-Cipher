@@ -19,15 +19,57 @@ end
 
 # ceaser cipher method that accepts message and shift factor as parameters and returns the encrypted string.
 def caesar_cipher(message, shift_factor)
-  message_array = message.rstrip.chars # delete spaces off end of string and split string into an array of chars
+  
+  # define local variables
   new_string = []
+  wrap_amaount = 0
+  new_char = ""
+  shifted_ascii_value = 0
+
+  # delete spaces off end of string and split string into an array of chars
+  message_array = message.rstrip.chars
+  puts "message_array = #{message_array}"
+
+  # Shift each character in message
   message_array.map do |char|
     ascii_value = char.ord
-    new_char = (ascii_value - shift_factor).chr
-    new_string.push(new_char)
+    shifted_ascii_value = ascii_value - shift_factor
+    wrap_amaount = 0
+
+    if ascii_value.between?(97,122) #check if char is lower case
+      if shifted_ascii_value < 97
+        wrap_amaount = 97 - shifted_ascii_value
+        new_char = (122 - wrap_amaount).chr
+        puts ("new char #{char} was wrapped! It's now #{new_char}!")
+      else
+        new_char = shifted_ascii_value.chr
+        puts ("new char #{char} wasn't wrapped! It's now #{new_char}!")
+      end
+      new_string.push(new_char)
+    elsif ascii_value.between?(65,90) #check if char is upper case
+      if shifted_ascii_value < 65
+        wrap_amaount = 65 - shifted_ascii_value
+        new_char = (90 - wrap_amaount).chr
+        puts ("new char #{char} was wrapped! It's now #{new_char}!")
+      else
+        new_char = shifted_ascii_value.chr
+        puts ("new char #{char} wasn't wrapped! It's now #{new_char}!")
+      end
+      new_string.push(new_char)
+    else
+      new_string.push(new_char)      
+    end
   end
-  puts "**NEW STRING**"
   puts "#{new_string}"
 end
 
 caesar_cipher(message, shift_factor)
+
+
+
+# check if ascii value - shift factor is < 97 (a)
+  # if it is, 'wrap' to 122 (z)
+# check if ascii value - shift factor is < 65 (A)
+  # if it is, 'wrap' to 90 (Z)
+# check if ascii value < 60
+  # if it is, don't apply the shift factor
