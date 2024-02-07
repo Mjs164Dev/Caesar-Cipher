@@ -54,8 +54,8 @@ def caesar_cipher(message, shift_factor)
         new_char = shifted_ascii_value.chr
         puts ("new char #{char} wasn't wrapped! It's now #{new_char}!")
       end
-    else
-      new_char = char
+    else # if char isn't upper or lower case, then don't do anything to it
+      new_char = char 
       puts ("special char #{char} was pushed to new_string!")
     end
     new_string.push(new_char)
