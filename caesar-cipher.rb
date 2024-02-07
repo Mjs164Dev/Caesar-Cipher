@@ -45,7 +45,6 @@ def caesar_cipher(message, shift_factor)
         new_char = shifted_ascii_value.chr
         puts ("new char #{char} wasn't wrapped! It's now #{new_char}!")
       end
-      new_string.push(new_char)
     elsif ascii_value.between?(65,90) #check if char is upper case
       if shifted_ascii_value < 65
         wrap_amaount = 65 - shifted_ascii_value
@@ -55,21 +54,14 @@ def caesar_cipher(message, shift_factor)
         new_char = shifted_ascii_value.chr
         puts ("new char #{char} wasn't wrapped! It's now #{new_char}!")
       end
-      new_string.push(new_char)
     else
-      new_string.push(new_char)      
+      new_char = char
+      puts ("special char #{char} was pushed to new_string!")
     end
+    new_string.push(new_char)
   end
+  new_string = new_string.join(" ")
   puts "#{new_string}"
 end
 
 caesar_cipher(message, shift_factor)
-
-
-
-# check if ascii value - shift factor is < 97 (a)
-  # if it is, 'wrap' to 122 (z)
-# check if ascii value - shift factor is < 65 (A)
-  # if it is, 'wrap' to 90 (Z)
-# check if ascii value < 60
-  # if it is, don't apply the shift factor
